@@ -8,8 +8,19 @@ class ContentRating extends Component {
     this.state = {
       likes: 0,
       dislikes: 0,
-      handleLike: () => {this.setState((prevState) => ({likes: prevState.likes + 1}))},
-      handleDislke: () => {this.setState((prevState) => ({dislikes: prevState.dislikes + 1}))}
+      totalRatings: 0,
+      handleLike: () => {
+        this.setState((prevState) => (
+            {likes: prevState.likes + 1, totalRatings: prevState.totalRatings + 1}
+          )
+        )
+      },
+      handleDislke: () => {
+        this.setState((prevState) => (
+            {dislikes: prevState.dislikes + 1, totalRatings: prevState.totalRatings + 1}
+          )
+        )
+      }
     }
   }
   render() {
@@ -23,6 +34,8 @@ class ContentRating extends Component {
         <div class='rating-buttons'>
             <button class='like-button' onClick={this.state.handleLike}>Like({this.state.likes})</button>
             <button class='dislike-button' onClick={this.state.handleDislke}>Dislike({this.state.dislikes})</button>
+            <label for='totalRating'>Total Ratings: </label>
+            <input type='number' id='totalRatings' name='totalRatings' value={this.state.totalRatings}/>
         </div>
        </div>
      </>
